@@ -1,0 +1,7 @@
+{
+  "names": [
+    { "id": 1, "label": "Léa",  "liked": false },
+    { "id": 2, "label": "Noah", "liked": false },
+    { "id": 3, "label": "Emma", "liked": true }
+  ]
+}

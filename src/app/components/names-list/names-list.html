@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Baby Names Picker</h1>
+
+  <form (submit)="$event.preventDefault(); addName()" class="add-form">
+    <input [formControl]="newNameControl" placeholder="Ajouter un prénom..." />
+    <button type="button" (click)="addName()" [disabled]="newNameControl.disabled">Ajouter</button>
+  </form>
+
+  @if (loading) {
+  <div class="spinner">
+    <div class="dot"></div>
+    <p>Chargement des prénoms…</p>
+  </div>
+  }
+
+  @if (error) {
+  <div class="error">
+    {{ error }}
+    <button (click)="loadNames()">Réessayer</button>
+  </div>
+  }
+
+  @if (!loading && !error) {
+    <ul class="names-list">
+        @for (name of names; track $index) {
+            <li>
+                <span class="label">{{ name.label }}</span>
+                <div class="actions">
+                    <button (click)="toggleLike(name)" title="Like">{{ name.liked ? '💖' : '🤍' }}</button>
+                    <button (click)="deleteName(name.id)" title="Supprimer">🗑️</button>
+                </div>
+            </li>
+        }
+    </ul>
+  }
+</div>
